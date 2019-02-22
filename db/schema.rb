@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2019_02_22_043805) do
     t.text "description", null: false
     t.text "objective", null: false
     t.text "experience", null: false
-    t.text "photo", null: false
+    t.text "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

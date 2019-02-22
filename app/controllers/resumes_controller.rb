@@ -10,6 +10,29 @@ class ResumesController < ApplicationController
   # GET /resumes/1
   # GET /resumes/1.json
   def show
+    respond_to do |format|
+        format.html
+        format.pdf do
+            render pdf: "Resume No. #{@resume.id}",
+            page_size: 'A4',
+            template: "resumes/show.html.erb",
+            layout: "pdf.html",
+            orientation: "Portrait",
+            lowquality: true,
+            zoom: 1,
+            dpi: 75,
+            header: {
+                html: { template: 'resumes/header.html.erb' },
+                spacing: 1
+            },
+              footer: {
+                html: { template: 'resumes/footer.html.erb' },
+                spacing: 1,
+                line: true,
+                right: '[page] of [topage]' #page number
+            }
+        end
+    end
   end
 
   # GET /resumes/new
@@ -69,6 +92,14 @@ class ResumesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def resume_params
-      params.fetch(:resume, {})
+      params.require(:resume).permit(
+          :name,
+          :phone,
+          :address,
+          :description,
+          :objective,
+          :experience,
+          :photo,
+      )
     end
 end

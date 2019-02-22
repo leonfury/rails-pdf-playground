@@ -1,5 +1,7 @@
 <h1>New Resume</h1>
 
-<%= render 'form', resume: @resume %>
+<div class="w-50 border-right pr-5">
+    <%= render 'form', resume: @resume %>
+</div>
 
-<%= link_to 'Back', resumes_path %>
+<%= link_to 'Back', resumes_path, class:"btn btn-danger text-white" %>
