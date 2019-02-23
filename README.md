@@ -27,6 +27,7 @@ https://berislavbabic.com/send-pdf-attachments-from-rails-with-wickedpdf-and-act
 - gem 'wicked_pdf', github: 'mileszs/wicked_pdf'
 
 
+
 #Step 2 Generate wicked_pdf initializer
 
 Terminal -> rails g wicked_pdf
@@ -34,12 +35,15 @@ Terminal -> rails g wicked_pdf
 File created -> config/initializers/wicked_pdf.rb
 
 
+
 #Step 3 Generate model
+
 
 
 #Step 4 Configure Controller to render pdf file on browser
 
 See controller resumes#show
+
 
 
 #Step 5 Create View File
@@ -49,6 +53,7 @@ Create app/views/layout/pdf.html.erb
 Note: doesn't seem to be able to inherit stylesheets in assets ~
 
 Note: image tag has to be used as wicked_pdf_image_tag
+
 
 
 #Step 6 Configure email job to attach pdf file on email
