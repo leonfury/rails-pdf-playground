@@ -49,11 +49,59 @@ To relevant controlelr method
     end
 
 #Step 5 Create View File
-Create app/views/layout/pdf.html.erb
+Create app/views/layout/pdf.html.erb 
+Note: doesn't seem to be able to inherit stylesheets in assets ~
+Note: image tag has to be used as wicked_pdf_image_tag
 
-#Step 6 Deployment, ensure pdf assets precompile
-file: config/initializers/assets.rb
-    Rails.application.config.assets.precompile += %w( invoice.scss )
+#Step 6 Configure Controller to render pdf file on browser
+Example: see resume controller    
+    respond_to do |format|
+        format.html
+        format.pdf do
+            render pdf: "Resume No. #{@resume.id}",
+            page_size: 'A4',
+            template: "resumes/show.html.erb",
+            layout: "pdf.html",
+            orientation: "Portrait",
+            lowquality: true,
+            zoom: 1,
+            dpi: 75,
+            header: {
+                html: { template: 'resumes/header.html.erb' },
+                spacing: 1,
+                line: true,
+            },
+            footer: {
+                html: { template: 'resumes/footer.html.erb' },
+                spacing: 2,
+                line: true,
+                font_size: '8',
+                right: 'page [page] of [topage]' #page number
+            }
+        end
+    end
 
-^ not sure if applicable
-
+#Step 7 Configure email job to attach pdf file on email
+Example: see resume_mailer
+    resume = Resume.find(id)
+    attachments["Resume_#{id}.pdf"] = WickedPdf.new.pdf_from_string(
+        render_to_string(
+            pdf: 'todo', 
+            template: 'resume_mailer/resume_pdf.html.erb', 
+            layout: 'pdf.html', 
+            locals: { resume: resume }
+        ), 
+        header: {
+            content: render_to_string(template: 'resumes/header.html.erb'),
+            spacing: 1,
+            line: true,
+        },
+        footer: {
+            content: render_to_string(template: 'resumes/footer.html.erb'),
+            spacing: 1,
+            line: true,
+            font_size: '8',
+            right: 'page [page] of [topage]' #page number
+        } 
+    )
+    mail(to: email, subject: 'Your Resume PDF is attached')
