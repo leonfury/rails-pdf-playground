@@ -4,7 +4,10 @@ Running
     ruby '2.5.3'
     gem 'rails', '~> 5.2.2'
 
-Tutorial sources: https://www.pdftron.com/blog/rails/how-to-generate-pdf-with-ruby-on-rails/
+Tutorial sources: 
+https://www.pdftron.com/blog/rails/how-to-generate-pdf-with-ruby-on-rails/
+https://github.com/mileszs/wicked_pdf
+https://berislavbabic.com/send-pdf-attachments-from-rails-with-wickedpdf-and-actionmailer/
 
 #Step 1 Installing Dependcies
 To gemfile

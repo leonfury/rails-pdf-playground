@@ -1,0 +1,50 @@
+<div class="clearfix">
+    <% if @resume.photo %>
+        <%= image_tag @resume.photo, size:"300x300", class:"float-left" %>
+    <% end %>
+    <div class="float-left">
+        <table>
+            <tr>
+                <td>Full Name</td>
+                <td><%= @resume.name if @resume.name %></td>
+            </tr>
+            <tr>
+                <td>Contact Number</td>
+                <td><%= @resume.phone if @resume.phone %></td>
+            </tr>
+            <tr>
+                <td>Residential Address</td>
+                <td><%= @resume.address if @resume.address %></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<hr>
+<div>
+    <h4>About Me</h4>
+    <%= @resume.description if @resume.description %>
+    <br>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, omnis labore ad inventore eligendi saepe eum, ducimus voluptates, facilis nostrum odio totam? Inventore dicta neque porro, possimus soluta error quam.
+</div>
+<br>
+<div>
+    <h4>Resume Objective</h4>
+    <%= @resume.objective if @resume.objective %>
+    <br>
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat vitae dolorum, voluptas deserunt quod distinctio quae minus molestiae ad nemo repudiandae natus voluptatibus assumenda recusandae. Dolorum repudiandae recusandae tempora earum.
+</div>
+<br>
+<div>
+    <h4>My Experience</h4>
+    <%= @resume.experience if @resume.experience %>
+    <br>
+    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error, repellendus et quod veniam repellat nulla sint deleniti ullam delectus atque aut, quasi non, architecto voluptatibus aliquam odio. Eaque, voluptatem eos!
+</div>
+
+<% i = 0 %>
+<% while i < 40 do %>
+    <br><br>
+    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi odio ipsa commodi ducimus perferendis quas earum accusamus tempora, possimus amet explicabo mollitia nisi accusantium asperiores magni doloremque blanditiis cumque cupiditate!
+    <br><br>
+<% i += 1 %>
+<% end %>

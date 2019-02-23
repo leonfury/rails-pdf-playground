@@ -1,5 +1,5 @@
 class ResumesController < ApplicationController
-  before_action :set_resume, only: [:show, :edit, :update, :destroy]
+  before_action :set_resume, only: [:show, :edit, :update, :destroy, :download]
 
   # GET /resumes
   # GET /resumes.json
@@ -23,16 +23,23 @@ class ResumesController < ApplicationController
             dpi: 75,
             header: {
                 html: { template: 'resumes/header.html.erb' },
-                spacing: 1
+                spacing: 1,
+                line: true,
             },
               footer: {
                 html: { template: 'resumes/footer.html.erb' },
-                spacing: 1,
+                spacing: 2,
                 line: true,
-                right: '[page] of [topage]' #page number
+                font_size: '8',
+                right: 'page [page] of [topage]' #page number
             }
         end
     end
+  end
+
+  def download
+    ResumeMailer.resume(@resume.id).deliver_now
+    redirect_to resume_path(@resume)
   end
 
   # GET /resumes/new
