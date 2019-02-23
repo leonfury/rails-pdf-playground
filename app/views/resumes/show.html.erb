@@ -1,12 +1,18 @@
 <div class="w-75 m-auto">
-    <nav class="text-right">
-        <%= link_to 'Email Resume', download_path(@resume.id), method: :post,class:"btn btn-primary text-white" %>
-        <%= link_to 'Edit', edit_resume_path(@resume), class:"btn btn-primary text-white" %>
-        <%= link_to 'Back', resumes_path, class:"btn btn-primary text-white" %>
-        <%= link_to 'Print Resume', resume_path(format: "pdf"), class:"btn btn-primary text-white", target:"blank" %>
+    <nav class="">
+        <%= form_with url: download_path(@resume.id), method: :post, class:"d-inline" do |f| %>
+            <%= f.submit "Email Resume To", class:"btn btn-primary text-white mb-2" %>
+            <%= f.text_field:email, class:"form-control w-25 d-inline ml-1" %>
+
+        <% end %>
+        <div class="d-inline float-right">
+            <%= link_to 'Edit', edit_resume_path(@resume), class:"btn btn-primary ml-3 text-white" %>
+            <%= link_to 'Back', resumes_path, class:"btn btn-primary ml-3 text-white" %>
+            <%= link_to 'View Resume in PDF', resume_path(format: "pdf"), class:"btn btn-primary ml-3 text-white", target:"blank" %>
+        </div>
         <br><br><hr>
     </nav>
-    
+   
    <%= render partial: "resumes/content" %>
 
 </div>

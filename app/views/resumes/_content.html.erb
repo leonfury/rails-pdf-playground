@@ -1,8 +1,12 @@
-<div class="clearfix">
-    <% if @resume.photo %>
-        <%= image_tag @resume.photo, size:"300x300", class:"float-left" %>
-    <% end %>
-    <div class="float-left">
+<div class="row p_flex">
+    <div class="col-2 p_left">
+        <% if @pdf %>
+            <%= wicked_pdf_image_tag @resume.photo_url.to_s, size:"200x200", class:"" %>
+        <% else %>
+            <%= image_tag @resume.photo_url.to_s, size:"200x200", class:"rounded-circle" %>
+        <% end %>
+    </div>
+    <div class="col-10 p_right">
         <table>
             <tr>
                 <td>Full Name</td>
@@ -17,17 +21,17 @@
                 <td><%= @resume.address if @resume.address %></td>
             </tr>
         </table>
+        <div>
+            <h4>About Me</h4>
+            <%= @resume.description if @resume.description %>
+            <br>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, omnis labore ad inventore eligendi saepe eum, ducimus voluptates, facilis nostrum odio totam? Inventore dicta neque porro, possimus soluta error quam.
+        </div>
     </div>
 </div>
-<hr>
-<div>
-    <h4>About Me</h4>
-    <%= @resume.description if @resume.description %>
-    <br>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, omnis labore ad inventore eligendi saepe eum, ducimus voluptates, facilis nostrum odio totam? Inventore dicta neque porro, possimus soluta error quam.
-</div>
-<br>
-<div>
+
+<div class="p_content">
+    <br><hr>
     <h4>Resume Objective</h4>
     <%= @resume.objective if @resume.objective %>
     <br>

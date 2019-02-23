@@ -5,13 +5,37 @@
     <meta charset='utf-8' />
     <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
     <%= wicked_pdf_javascript_include_tag "number_pages" %>
-
 <style>
     nav {display: none;}
 
     footer {
         color: red;
         text-align: center;
+    }
+
+    .p_flex {
+        display: flex;
+    }
+
+    .p_left {
+        float: left;
+        width: 200px;
+    }
+
+    .p_left img {
+        margin-top: 10px;
+        border-radius: 50%;
+    }
+
+    .p_right {
+        float: left;
+        width: 600px;
+        margin-left: 30px;
+        margin-top: 10px;
+    }
+
+    .p_content {
+        clear: both;
     }
 </style>
 

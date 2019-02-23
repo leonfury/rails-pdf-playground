@@ -68,3 +68,4 @@ gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf', github: 'mileszs/wicked_pdf'
 gem "letter_opener", :group => :development
 gem 'sidekiq'
+gem 'carrierwave', '~> 1.0'

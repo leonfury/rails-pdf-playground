@@ -1,7 +1,8 @@
 class ResumeMailer < ApplicationMailer
-    def resume(id)
+    def resume(id, email)
+        @pdf = true
         resume = Resume.find(id)
-        attachments["resume_#{id}.pdf"] = WickedPdf.new.pdf_from_string(
+        attachments["Resume_#{id}.pdf"] = WickedPdf.new.pdf_from_string(
             render_to_string(
                 pdf: 'todo', 
                 template: 'resume_mailer/resume_pdf.html.erb', 
@@ -21,6 +22,6 @@ class ResumeMailer < ApplicationMailer
                 right: 'page [page] of [topage]' #page number
             } 
         )
-        mail(to: 'kliwaru@gmail.com', subject: 'Your todo PDF is attached')
+        mail(to: email, subject: 'Your Resume PDF is attached')
     end
 end
