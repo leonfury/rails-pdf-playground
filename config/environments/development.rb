@@ -60,7 +60,7 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
     # letter_opener start
-  config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.perform_deliveries = true
+#   config.action_mailer.delivery_method = :letter_opener
+#   config.action_mailer.perform_deliveries = true
   # letter_opener end
 end
