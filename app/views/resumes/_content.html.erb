@@ -3,7 +3,7 @@
         <% if @pdf %>
             <%= wicked_pdf_image_tag @resume.photo_url.to_s, size:"200x200", class:"" %>
         <% else %>
-            <%= image_tag @resume.photo_url.to_s, size:"200x200", class:"rounded-circle" %>
+            <%= image_tag @resume.photo_url.to_s, size:"", class:"rounded w-100" %>
         <% end %>
     </div>
     <div class="col-10 p_right">
@@ -21,34 +21,37 @@
                 <td><%= @resume.address if @resume.address %></td>
             </tr>
         </table>
-        <div>
-            <h4>About Me</h4>
-            <%= @resume.description if @resume.description %>
-            <br>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, omnis labore ad inventore eligendi saepe eum, ducimus voluptates, facilis nostrum odio totam? Inventore dicta neque porro, possimus soluta error quam.
-        </div>
+
     </div>
 </div>
 
 <div class="p_content">
     <br><hr>
+    <div>
+        <h4>About Me</h4>
+        <%= @resume.description if @resume.description %>
+        <br>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, omnis labore ad inventore eligendi saepe eum, ducimus voluptates, facilis nostrum odio totam? Inventore dicta neque porro, possimus soluta error quam.
+    </div>
+    <br><br>
     <h4>Resume Objective</h4>
     <%= @resume.objective if @resume.objective %>
     <br>
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat vitae dolorum, voluptas deserunt quod distinctio quae minus molestiae ad nemo repudiandae natus voluptatibus assumenda recusandae. Dolorum repudiandae recusandae tempora earum.
-</div>
-<br>
-<div>
-    <h4>My Experience</h4>
-    <%= @resume.experience if @resume.experience %>
-    <br>
-    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error, repellendus et quod veniam repellat nulla sint deleniti ullam delectus atque aut, quasi non, architecto voluptatibus aliquam odio. Eaque, voluptatem eos!
-</div>
 
-<% i = 0 %>
-<% while i < 40 do %>
     <br><br>
-    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi odio ipsa commodi ducimus perferendis quas earum accusamus tempora, possimus amet explicabo mollitia nisi accusantium asperiores magni doloremque blanditiis cumque cupiditate!
+    <div>
+        <h4>My Experience</h4>
+        <%= @resume.experience if @resume.experience %>
+        <br>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Error, repellendus et quod veniam repellat nulla sint deleniti ullam delectus atque aut, quasi non, architecto voluptatibus aliquam odio. Eaque, voluptatem eos!
+    </div>
     <br><br>
-<% i += 1 %>
-<% end %>
+    <% i = 0 %>
+    <% while i < 40 do %>
+        
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Excepturi odio ipsa commodi ducimus perferendis quas earum accusamus tempora, possimus amet explicabo mollitia nisi accusantium asperiores magni doloremque blanditiis cumque cupiditate!
+        <br>
+    <% i += 1 %>
+    <% end %>
+</div>
