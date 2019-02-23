@@ -1,10 +1,13 @@
 # rails-pdf-playground
 
+https://rails-pdf-playground.herokuapp.com/
+Note: images are not stored persistently as static assets are stored locally for this project
+
 Still In progress
 - Attempting to render pdf with details from custom forms
 - Pdf can be viewed and be attached in email
 
-==============================================================================================================================
+=============================================================================================================================
 
 Running
     ruby '2.5.3'
