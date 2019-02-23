@@ -4,42 +4,43 @@ class ResumesController < ApplicationController
     # GET /resumes
     # GET /resumes.json
     def index
-        @resumes = Resume.all
+        @resumes = Resume.all.order("created_at DESC")
     end
 
     # GET /resumes/1
     # GET /resumes/1.json
     def show
-            @pdf = params[:format] == 'pdf' ? true : false;
-            respond_to do |format|
-                format.html
-                format.pdf do
-                    render pdf: "Resume No. #{@resume.id}",
-                    page_size: 'A4',
-                    template: "resumes/show.html.erb",
-                    layout: "pdf.html",
-                    orientation: "Portrait",
-                    lowquality: true,
-                    zoom: 1,
-                    dpi: 75,
-                    header: {
-                        html: { template: 'resumes/header.html.erb' },
-                        spacing: 1,
-                        line: true,
-                    },
-                    footer: {
-                        html: { template: 'resumes/footer.html.erb' },
-                        spacing: 2,
-                        line: true,
-                        font_size: '8',
-                        right: 'page [page] of [topage]' #page number
-                    }
-                end
+        @pdf = params[:format] == 'pdf' ? true : false;
+        respond_to do |format|
+            format.html
+            format.pdf do
+                render pdf: "Resume No. #{@resume.id}",
+                page_size: 'A4',
+                template: "resumes/show.html.erb",
+                layout: "pdf.html",
+                orientation: "Portrait",
+                lowquality: true,
+                zoom: 1,
+                dpi: 75,
+                header: {
+                    html: { template: 'resumes/header.html.erb' },
+                    spacing: 1,
+                    line: true,
+                },
+                footer: {
+                    html: { template: 'resumes/footer.html.erb' },
+                    spacing: 2,
+                    line: true,
+                    font_size: '8',
+                    right: 'page [page] of [topage]' #page number
+                }
             end
+        end
     end
 
     def download
         ResumeMailer.resume(@resume.id, params[:email]).deliver_now
+        flash[:success] = "A copy of your resume has been emailed to you at #{params[:email]}"
         redirect_to resume_path(@resume)
     end
 
