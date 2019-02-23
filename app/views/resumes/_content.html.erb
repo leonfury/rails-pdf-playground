@@ -1,9 +1,15 @@
 <div class="row p_flex">
     <div class="col-2 p_left">
-        <% if @pdf %>
-            <%= wicked_pdf_image_tag @resume.photo_url.to_s, size:"200x200", class:"" %>
+        <!-- wicked pdf unable to render https links -->
+        <% if @resume.photo_url.to_s[4] = "s" %>
+            <% photo = @resume.photo_url.to_s[0..3] + @resume.photo_url.to_s[5..-1]  %>
         <% else %>
-            <%= image_tag @resume.photo_url.to_s, size:"", class:"rounded w-100" %>
+            <% photo = @resume.photo_url.to_s %>
+        <% end %>
+        <% if @pdf %>
+            <%= wicked_pdf_image_tag photo, size:"200x200", class:"" %>
+        <% else %>
+            <%= image_tag photo, size:"", class:"rounded w-100" %>
         <% end %>
     </div>
     <div class="col-10 p_right">
