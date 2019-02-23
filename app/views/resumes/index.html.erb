@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+<h1> Landing Page </h1>
+<p> Bla bla bla </p>
+<%= link_to 'New Resume', new_resume_path, class:"btn btn-primary text-white" %>
+
+<hr>
+
+<h1>All Resumes</h1>
+
+<table class="table table-hover">
+    <thead>
+        <tr class="thead-light">
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Description</th>
+            <th>Created at</th>
+            <th colspan="3" class="text-center">Actions</th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @resumes.each do |r| %>
+        <tr>
+            <td><%= r.name %></td>
+            <td><%= r.phone %></td>
+            <td><%= r.description %></td>
+            <td><%= r.created_at.strftime("%d %B %Y") %></td>
+            <td class="border-left"><%= link_to 'Show', r, class:"btn btn-success text-white" %></td>
+            <td><%= link_to 'Edit', edit_resume_path(r), class:"btn btn-success text-white" %></td>
+            <td><%= link_to 'Destroy', r, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger text-white" %></td>
+        </tr>
+        <% end %>
+        <tr>
+            <td colspan="7"></td>
+        </tr>
+    </tbody>
+</table>
+
+<br>
+
+

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Your Resume </title>
+    <meta charset='utf-8' />
+    <%= wicked_pdf_stylesheet_link_tag "pdf" -%>
+    <%= wicked_pdf_javascript_include_tag "number_pages" %>
+<style>
+    nav {display: none;}
+
+    footer {
+        color: red;
+        text-align: center;
+    }
+
+    .p_flex {
+        display: flex;
+    }
+
+    .p_left {
+        float: left;
+        width: 200px;
+    }
+
+    .p_left img {
+        margin-top: 10px;
+        border-radius: 50%;
+    }
+
+    .p_right {
+        float: left;
+        width: 600px;
+        margin-left: 30px;
+        margin-top: 10px;
+    }
+
+    .p_content {
+        clear: both;
+    }
+</style>
+
+<script>
+    function number_pages() {
+        var vars = {};
+        var x = document.location.search.substring(1).split('&');
+        for(var i in x) {
+            var z=x[i].split('=',2);
+            vars[z[0]] = decodeURIComponent(z[1]);    
+        }
+        var x = ['frompage','topage','page','webpage','section','subsection','subsubsection'];
+        for(var i in x) {
+            var y = document.getElementsByClassName(x[i]);
+            for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+        }
+    }
+</script>
+</head>
+
+<body onload='number_pages()'>
+    <div id='content'>
+        <%= yield %>
+    </div>
+    <!-- <div>Page <span class="page"></span> of <span class="topage"></span></div> -->
+</body>
+</html>
+
+
