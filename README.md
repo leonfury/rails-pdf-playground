@@ -4,7 +4,9 @@ https://rails-pdf-playground.herokuapp.com/
 
 Rails playground for PDF generation and attaching rendered PDF to emails
 
-Note: Save rendered PDF to external cloud service
+# What's Next
+- Save rendered PDF to external cloud service
+- Users able to store rich-text to database (font-color, sentence breaks etc)
 
 
 Running
