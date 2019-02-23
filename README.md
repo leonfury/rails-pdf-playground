@@ -1,5 +1,11 @@
 # rails-pdf-playground
 
+Still In progress
+- Attempting to render pdf with details from custom forms
+- Pdf can be viewed and be attached in email
+
+==============================================================================================================================
+
 Running
     ruby '2.5.3'
     gem 'rails', '~> 5.2.2'
@@ -47,3 +53,4 @@ file: config/initializers/assets.rb
     Rails.application.config.assets.precompile += %w( invoice.scss )
 
 ^ not sure if applicable
+
