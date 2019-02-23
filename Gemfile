@@ -70,3 +70,5 @@ gem "letter_opener", :group => :development
 gem 'sidekiq'
 gem 'carrierwave', '~> 1.0'
 gem 'fog-aws'
+gem 'wkhtmltopdf-binary-edge', '~> 0.12.2.1'
+

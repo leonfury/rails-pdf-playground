@@ -7,6 +7,7 @@ Still In progress
 - Attempting to render pdf with details from custom forms
 - Pdf can be viewed and be attached in email
 
+To do : saving rendered pdf to amazon s3 bucket
 =============================================================================================================================
 
 Running
