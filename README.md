@@ -5,10 +5,10 @@ https://rails-pdf-playground.herokuapp.com/
 Rails playground for PDF generation and attaching rendered PDF to emails
 Note: Save rendered PDF to external cloud service
 
-=============================================================================================================================
+
 Running
-    ruby '2.5.3'
-    gem 'rails', '~> 5.2.2'
+ruby '2.5.3'
+gem 'rails', '~> 5.2.2'
 
 Tutorial sources: 
 https://www.pdftron.com/blog/rails/how-to-generate-pdf-with-ruby-on-rails/
