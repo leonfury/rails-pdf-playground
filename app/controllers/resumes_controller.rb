@@ -59,14 +59,17 @@ class ResumesController < ApplicationController
         @resume = Resume.new(resume_params)
 
         respond_to do |format|
-        if @resume.save
-            format.html { redirect_to @resume, notice: 'Resume was successfully created.' }
-            format.json { render :show, status: :created, location: @resume }
-        else
-            format.html { render :new }
-            format.json { render json: @resume.errors, status: :unprocessable_entity }
+            if @resume.save
+                format.html { redirect_to @resume, notice: 'Resume was successfully created.' }
+                format.json { render :show, status: :created, location: @resume }
+                CreatePdfJob.perform_later(@resume.id)
+            else
+                format.html { render :new }
+                format.json { render json: @resume.errors, status: :unprocessable_entity }
+            end
         end
-        end
+
+
     end
 
     # PATCH/PUT /resumes/1

@@ -9,6 +9,7 @@
         <% if @pdf %>
             <%= wicked_pdf_image_tag photo, size:"200x200", class:"" %>
         <% else %>
+            
             <%= image_tag photo, size:"", class:"rounded w-100" %>
         <% end %>
     </div>
@@ -60,4 +61,5 @@
         <br>
     <% i += 1 %>
     <% end %>
+    
 </div>

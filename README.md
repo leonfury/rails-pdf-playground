@@ -61,3 +61,26 @@ Note: image tag has to be used as wicked_pdf_image_tag
 # Step 6 Configure email job to attach pdf file on email
 
 See resume_mailer
+
+===============================================================================
+# Uploading Rendered PDF to Amazon S3
+# Step 1 Dependencies
+To gemfile
+gem 'aws-sdk', '~> 3'
+
+To application.rb
+require 'aws-sdk-s3'
+
+# Step 2
+Add s3 bucket syntax: see resume_job.rb
+
+Note:
+render_to_string (used for pdf generation) seems to only work within ApplicationMailer
+See create_pdf_job.rb
+
+# Work Flow:
+# Create New Resume 
+ResumesController#create > CreatePdfJob (render pdf)> ResumeJob (upload pdf to S3)
+
+# Send Resume
+ResumesController#download > ResumeMailer#resume (render pdf, attach to mail) > ResumeJob (upload pdf to S3)
