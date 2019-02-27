@@ -62,38 +62,12 @@ class ResumesController < ApplicationController
             if @resume.save
                 format.html { redirect_to @resume, notice: 'Resume was successfully created.' }
                 format.json { render :show, status: :created, location: @resume }
+                CreatePdfJob.perform_later(@resume.id)
             else
                 format.html { render :new }
                 format.json { render json: @resume.errors, status: :unprocessable_entity }
             end
         end
-
-         # To add pdf to S3
-         pdf = WickedPdf.new.pdf_from_string(
-            render_to_string(
-                pdf: 'todo', 
-                template: 'resume_mailer/resume_pdf.html.erb', 
-                layout: 'pdf.html', 
-                locals: { resume: @resume }
-            ), 
-            header: {
-                content: render_to_string(template: 'resumes/header.html.erb'),
-                spacing: 1,
-                line: true,
-            },
-            footer: {
-                content: render_to_string(template: 'resumes/footer.html.erb'),
-                spacing: 1,
-                line: true,
-                font_size: '8',
-                right: 'page [page] of [topage]' #page number
-            } 
-        )
-
-        s3 = Aws::S3::Resource.new(region:ENV['AWS_REGION'], :access_key_id => ENV['AWS_ID'], :secret_access_key => ENV['AWS_SECRET'])
-        obj = s3.bucket(ENV['AWS_BUCKET']).object("pdf/resume/#{@resume.id}-#{Time.now()}.pdf")
-        obj.put(body: pdf)
-        # end
 
 
     end

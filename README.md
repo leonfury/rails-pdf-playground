@@ -71,6 +71,16 @@ gem 'aws-sdk', '~> 3'
 To application.rb
 require 'aws-sdk-s3'
 
+# Step 2
+Add s3 bucket syntax: see resume_job.rb
 
-#Step 2
-Add s3 bucket syntax: see resume_mailer.rb
+Note:
+render_to_string (used for pdf generation) seems to only work within ApplicationMailer
+See create_pdf_job.rb
+
+# Work Flow:
+# Create New Resume 
+ResumesController#create > CreatePdfJob (render pdf)> ResumeJob (upload pdf to S3)
+
+# Send Resume
+ResumesController#download > ResumeMailer#resume (render pdf, attach to mail) > ResumeJob (upload pdf to S3)
