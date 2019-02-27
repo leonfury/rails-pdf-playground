@@ -73,3 +73,6 @@ gem 'fog-aws'
 # gem 'wkhtmltopdf-binary-edge', '~> 0.12.2.1'
 
 gem 'figaro'
+
+
+gem 'aws-sdk', '~> 3'

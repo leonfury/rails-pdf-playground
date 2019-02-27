@@ -2,7 +2,8 @@ class ResumeMailer < ApplicationMailer
     def resume(id, email)
         @pdf = true
         resume = Resume.find(id)
-        attachments["Resume_#{id}.pdf"] = WickedPdf.new.pdf_from_string(
+    
+        pdf = WickedPdf.new.pdf_from_string(
             render_to_string(
                 pdf: 'todo', 
                 template: 'resume_mailer/resume_pdf.html.erb', 
@@ -22,6 +23,13 @@ class ResumeMailer < ApplicationMailer
                 right: 'page [page] of [topage]' #page number
             } 
         )
+
+        # To add pdf to S3
+        s3 = Aws::S3::Resource.new(region:ENV['AWS_REGION'], :access_key_id => ENV['AWS_ID'], :secret_access_key => ENV['AWS_SECRET'])
+        obj = s3.bucket(ENV['AWS_BUCKET']).object("pdf/resume/#{id}-#{Time.now()}.pdf")
+        obj.put(body: pdf)
+        # end
+        attachments["Resume_#{id}.pdf"] = pdf 
         mail(to: email, subject: 'Your Resume PDF is attached')
     end
 end

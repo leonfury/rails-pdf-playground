@@ -5,6 +5,7 @@ require 'sidekiq/web'
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 require 'fog/aws'
+require 'aws-sdk-s3'
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
