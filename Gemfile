@@ -75,4 +75,4 @@ gem 'fog-aws'
 gem 'figaro'
 
 
-gem 'aws-sdk', '~> 3'
+gem 'aws-sdk-s3'
