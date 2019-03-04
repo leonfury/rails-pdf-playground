@@ -67,8 +67,6 @@ See resume_mailer
 # Step 1 Dependencies
 To gemfile
 gem 'aws-sdk', '~> 3'
-OR
-gem 'aws-sdk-s3' #only for s3 services
 
 To application.rb
 require 'aws-sdk-s3'
